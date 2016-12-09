@@ -1,4 +1,4 @@
-%function glcmFeature=glcmEksFitur(image)
+function glcmFeature=glcmEksFitur(image)
     %GLCM
     glcm=graycomatrix(rgb2gray(image),'offset' ,[0 1; -1 1; -1 0; -1 -1]);
     glcmFeature=zeros(1,24);
@@ -28,4 +28,4 @@
             end
         end
     end
-%end
+end
