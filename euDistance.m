@@ -21,7 +21,8 @@ function imgSimilar=euDistance(Query)
         %
         %imgHist2 = imhist(dataset);
 
-        euDist{n,2} = sqrt(sum((trainVal{n} - Query{1}).^2));
+        %euDist{n,2} = sqrt(sum((trainVal{n} - Query{1}).^2));
+        euDist{n,2} = pdist2(trainVal{n},Query{1},'jaccard');
         euDist{n,1} = trainVal(n,2);
     end
 
