@@ -81,7 +81,7 @@ function edit8_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of edit8 as text
 %        str2double(get(hObject,'String')) returns contents of edit8 as a double
-
+get(handles.edit8,'String');
 
 % --- Executes during object creation, after setting all properties.
 function edit8_CreateFcn(hObject, eventdata, handles)
@@ -94,7 +94,6 @@ function edit8_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 
 % --- Executes on button press in pushbutton4.
 function pushbutton4_Callback(hObject, eventdata, handles)
@@ -114,7 +113,6 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-
 function edit7_Callback(hObject, eventdata, handles)
 % hObject    handle to edit7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -122,6 +120,7 @@ function edit7_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of edit7 as text
 %        str2double(get(hObject,'String')) returns contents of edit7 as a double
+get(handles.edit8,'String');
 
 
 % --- Executes during object creation, after setting all properties.
@@ -280,6 +279,47 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+namafile = get(handles.edit8,'String');
+%img=imread(namafile);
+%img = get(handles.axes1,'String',a);
+%img = getimage(axes1);
+img=getimage(handles.axes1);
+Query={[histHSV(img) glcmEksFitur(img)] namafile};
+
+glcm=glcmEksFitur(img);
+asm = glcm(1);
+set(handles.edit1,'String',asm);
+
+con = glcm(2);
+set(handles.edit2,'String',con);
+
+cor = glcm(3);
+set(handles.edit3,'String',cor);
+
+var = glcm(4);
+set(handles.edit4,'String',var);
+
+idm = glcm(5);
+set(handles.edit5,'String',idm);
+
+ent = glcm(6);
+set(handles.edit6,'String',ent);
+
+image = euDistance(Query);
+img1 = strcat('dataTrain\',char(image{1,1}));
+img2 = strcat('dataTrain\',char(image{2,1}));
+img3 = strcat('dataTrain\',char(image{3,1}));
+img4 = strcat('dataTrain\',char(image{4,1}));
+img5 = strcat('dataTrain\',char(image{5,1}));
+img6 = strcat('dataTrain\',char(image{6,1}));
+
+imshow(img1, 'Parent', handles.axes2);
+imshow(img2, 'Parent', handles.axes3);
+imshow(img3, 'Parent', handles.axes4);
+imshow(img4, 'Parent', handles.axes5);
+imshow(img5, 'Parent', handles.axes6);
+imshow(img6, 'Parent', handles.axes7);
+
 
 
 % --- Executes on button press in pushbutton2.
