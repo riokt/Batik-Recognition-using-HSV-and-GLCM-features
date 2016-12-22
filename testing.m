@@ -1,0 +1,7 @@
+testing=load('dataTest.mat');
+distanceList=cell(size(testing,1),6);
+for i=1:size(testing,1)
+    Query=testing.eksfiturTest(i,:);
+    jarak=euDistance(Query);
+    distanceList(i,:)=jarak(1:6,1);
+end
